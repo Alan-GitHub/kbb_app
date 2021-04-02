@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:kbb_app/Home/Main/HomeRouteWidget.dart';
-import 'package:kbb_app/Demo/EmbedScroll.dart';
+import 'package:kbb_app/Base/TabbarManager.dart';
+import 'package:provide/provide.dart';
+import 'package:kbb_app/Base/TabbarManagerProvide.dart';
 
 void main() {
-  runApp(KbbApp());
+  //Provider对象
+  var provides = Providers();
+
+  //生成自定义Provide
+  var tabbarIndex = TabbarManagerProvide();
+
+  //注册自定义Provide
+  provides
+  ..provide(Provider<TabbarManagerProvide>.value(tabbarIndex));
+
+  //进入App主流程
+  runApp(ProviderNode(child: KbbApp(), providers: provides));
 }
 
 class KbbApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'kbb',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.orange,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        primaryColor: Colors.greenAccent
       ),
-      home: HomeWidget(),
+      home: TabbarManager(),
     );
   }
 }
 
-class HomeWidget extends StatelessWidget {
-  HomeWidget({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: HomeRouteWidget()
-      // body: CustomScrollViewTestRoute(),
-    );
-  }
-}
