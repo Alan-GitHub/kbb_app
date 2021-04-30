@@ -28,10 +28,7 @@ class HomeMainPageTop extends StatelessWidget {
   Widget compose(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        header(),
-        moduleEntry(context)
-      ],
+      children: [header(), moduleEntry(context)],
     );
   }
 
@@ -72,6 +69,7 @@ class HomeMainPageTop extends StatelessWidget {
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               twoLevelEntry(Home_Icon_Takeout, '订餐'),
               twoLevelEntry(Home_Icon_Taxi, '打车'),
@@ -87,18 +85,26 @@ class HomeMainPageTop extends StatelessWidget {
   //酒店、机票入口
   Widget oneLevelEntry(String imageUrl, String text) {
     return Container(
-      width: ScreenUtil.screenWidth,
+      width: (ScreenUtil().screenWidth - 30 - 30) / 2,
+      height: 85,
       color: Colors.greenAccent.withAlpha(50),
-      child: ImageTextFromTopToBottom(
-          imageUrl, text, 32, 55, 32, 32, 15.0, FontWeight.normal),
+      margin: EdgeInsets.only(top: 20),
+      child: Center(
+        child: ImageTextFromTopToBottom(
+            imageUrl, text, 32, 55, 32, 32, 15.0, FontWeight.normal),
+      ),
     );
   }
 
   //订餐、打车、火车票、加油入口
   Widget twoLevelEntry(String imageUrl, String text) {
     return Container(
-        child: ImageTextFromTopToBottom(
-            imageUrl, text, 40, 50, 30, 30, 13.0, FontWeight.normal));
+        width: (ScreenUtil().screenWidth - 30) / 4,
+        height: 100,
+        child: Center(
+          child: ImageTextFromTopToBottom(
+              imageUrl, text, 40, 50, 30, 30, 13.0, FontWeight.normal),
+        ));
   }
 
   //图片文字组件
