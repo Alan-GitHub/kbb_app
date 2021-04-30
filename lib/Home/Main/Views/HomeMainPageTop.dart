@@ -1,5 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screen_util.dart';
+import 'package:kbb_app/Utils/ImageNameManager.dart';
 
 class HomeMainPageTop extends StatelessWidget {
   @override
@@ -10,7 +14,7 @@ class HomeMainPageTop extends StatelessWidget {
         child: Stack(
           children: [
             // Container
-            Image.asset('images/bg_home.png'),
+            Image.asset(Home_Top_Background),
             Positioned(
               top: 65.h,
               left: 15.w,
@@ -56,21 +60,23 @@ class HomeMainPageTop extends StatelessWidget {
       width: MediaQuery.of(context).size.width - 30,
       height: 205.h,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(Radius.circular(6.0))
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(6.0))),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [oneLevelEntry('酒店'), oneLevelEntry('机票')],
+            children: [
+              oneLevelEntry(Home_Icon_Hotel, '酒店'),
+              oneLevelEntry(Home_Icon_Plane, '机票')
+            ],
           ),
           Row(
             children: [
-              twoLevelEntry('订餐'),
-              twoLevelEntry('打车'),
-              twoLevelEntry('火车票'),
-              twoLevelEntry('加油')
+              twoLevelEntry(Home_Icon_Takeout, '订餐'),
+              twoLevelEntry(Home_Icon_Taxi, '打车'),
+              twoLevelEntry(Home_Icon_Train, '火车票'),
+              twoLevelEntry(Home_Icon_Oil, '加油')
             ],
           )
         ],
@@ -79,36 +85,44 @@ class HomeMainPageTop extends StatelessWidget {
   }
 
   //酒店、机票入口
-  Widget oneLevelEntry(String text) {
+  Widget oneLevelEntry(String imageUrl, String text) {
     return Container(
-      color: Colors.blueGrey,
-      child: Stack(
-        children: [
-          Container(
-            color: Colors.red,
-            // width: 100.w,
-            height: 70.h,
-          ),
-          Positioned(
-            child: Column(
-              children: [
-                Text('图片'),
-                Text(text)
-              ],
-            ),
-          )
-        ],
-      ),
+      width: ScreenUtil.screenWidth,
+      color: Colors.greenAccent.withAlpha(50),
+      child: ImageTextFromTopToBottom(
+          imageUrl, text, 32, 55, 32, 32, 15.0, FontWeight.normal),
     );
   }
 
   //订餐、打车、火车票、加油入口
-  Widget twoLevelEntry(String text) {
+  Widget twoLevelEntry(String imageUrl, String text) {
     return Container(
+        child: ImageTextFromTopToBottom(
+            imageUrl, text, 40, 50, 30, 30, 13.0, FontWeight.normal));
+  }
+
+  //图片文字组件
+  Widget ImageTextFromTopToBottom(
+      String imageUrl,
+      String text,
+      double widgetW,
+      double widgetH,
+      double imageW,
+      double imageH,
+      double fontSize,
+      FontWeight fontWeight) {
+    return Container(
+      width: widgetW,
+      height: widgetH,
       child: Column(
         children: [
-          Text('图片'),
-          Text(text)
+          Image.asset(
+            imageUrl,
+            width: imageW,
+            height: imageH,
+          ),
+          Text(text,
+              style: TextStyle(fontSize: fontSize, fontWeight: fontWeight))
         ],
       ),
     );
