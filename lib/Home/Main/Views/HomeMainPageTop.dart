@@ -3,14 +3,14 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_screenutil/screen_util.dart';
-import 'package:kbb_app/Utils/ImageNameManager.dart';
+import 'package:kbb_app/Config/ImageNameManager.dart';
+import 'package:kbb_app/Utils/ImageTextFromTopToBottom.dart';
 
 class HomeMainPageTop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
         height: 325.h,
-        color: Colors.grey,
         child: Stack(
           children: [
             // Container
@@ -55,7 +55,7 @@ class HomeMainPageTop extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10.h),
       width: MediaQuery.of(context).size.width - 30,
-      height: 205.h,
+      height: 210.h,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(6.0))),
@@ -87,8 +87,10 @@ class HomeMainPageTop extends StatelessWidget {
     return Container(
       width: (ScreenUtil().screenWidth - 30 - 30) / 2,
       height: 85,
-      color: Colors.greenAccent.withAlpha(50),
       margin: EdgeInsets.only(top: 20),
+      decoration: BoxDecoration(
+          color: Colors.greenAccent.withAlpha(50),
+          borderRadius: BorderRadius.all(Radius.circular(6))),
       child: Center(
         child: ImageTextFromTopToBottom(
             imageUrl, text, 32, 55, 32, 32, 15.0, FontWeight.normal),
@@ -105,32 +107,5 @@ class HomeMainPageTop extends StatelessWidget {
           child: ImageTextFromTopToBottom(
               imageUrl, text, 40, 50, 30, 30, 13.0, FontWeight.normal),
         ));
-  }
-
-  //图片文字组件
-  Widget ImageTextFromTopToBottom(
-      String imageUrl,
-      String text,
-      double widgetW,
-      double widgetH,
-      double imageW,
-      double imageH,
-      double fontSize,
-      FontWeight fontWeight) {
-    return Container(
-      width: widgetW,
-      height: widgetH,
-      child: Column(
-        children: [
-          Image.asset(
-            imageUrl,
-            width: imageW,
-            height: imageH,
-          ),
-          Text(text,
-              style: TextStyle(fontSize: fontSize, fontWeight: fontWeight))
-        ],
-      ),
-    );
   }
 }
