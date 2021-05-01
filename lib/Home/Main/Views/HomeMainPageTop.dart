@@ -14,7 +14,7 @@ class HomeMainPageTop extends StatelessWidget {
         child: Stack(
           children: [
             // Container
-            Image.asset(Home_Top_Background),
+            Image.asset(Home_img_top_background),
             Positioned(
               top: 65.h,
               left: 15.w,
@@ -64,17 +64,18 @@ class HomeMainPageTop extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              oneLevelEntry(Home_Icon_Hotel, '酒店'),
-              oneLevelEntry(Home_Icon_Plane, '机票')
+              oneLevelEntry(Home_icon_hotel, '酒店'),
+              oneLevelEntry(Home_icon_plane, '机票')
             ],
           ),
+          SizedBox(height: 5,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              twoLevelEntry(Home_Icon_Takeout, '订餐'),
-              twoLevelEntry(Home_Icon_Taxi, '打车'),
-              twoLevelEntry(Home_Icon_Train, '火车票'),
-              twoLevelEntry(Home_Icon_Oil, '加油')
+              twoLevelEntry(Home_icon_takeout, '订餐'),
+              twoLevelEntry(Home_icon_taxi, '打车'),
+              twoLevelEntry(Home_icon_train, '火车票'),
+              twoLevelEntry(Home_icon_oil, '加油')
             ],
           )
         ],
