@@ -10,4 +10,6 @@ const String Home_icon_oil = 'assets/images/home/btn_home_jiay.png';
 const String Home_img_huazhu = 'assets/images/home/img_home_huazhu.png';
 const String Home_img_yaduo = 'assets/images/home/img_home_yaduo.png';
 const String Home_img_love = 'assets/images/home/img_home_love.png';
+const String home_img_bottom = 'assets/images/home/img_home_bottom.png';
+
 
